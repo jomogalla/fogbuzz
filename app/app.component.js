@@ -9,15 +9,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var api_service_1 = require('./api.service');
 var AppComponent = (function () {
-    function AppComponent() {
+    function AppComponent(apiService) {
+        this.apiService = apiService;
+        this.username = '';
+        this.password = '';
+        this.bro = 'hello';
+        this.model = { username: '', password: '' };
+        this.results = '';
     }
+    AppComponent.prototype.logon = function (username, password) {
+        debugger;
+        results = this.apiService.logon(username, password);
+    };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: '<h1>Welcome to FogBuzz!</h1>'
+            templateUrl: '/app/app.template.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [api_service_1.ApiService])
     ], AppComponent);
     return AppComponent;
 }());

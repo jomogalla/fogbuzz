@@ -9,28 +9,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var platform_browser_1 = require('@angular/platform-browser');
-var forms_1 = require('@angular/forms');
 var http_1 = require('@angular/http');
-var app_component_1 = require('./app.component');
-var api_service_1 = require('./api.service');
-var AppModule = (function () {
-    function AppModule() {
+var ApiService = (function () {
+    function ApiService(http) {
+        this.http = http;
+        this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        this.fogbugzUrl = 'https://altsource.fogbugz.com/f/api/0/jsonapi';
     }
-    AppModule = __decorate([
-        core_1.NgModule({
-            imports: [
-                platform_browser_1.BrowserModule,
-                forms_1.FormsModule,
-                http_1.HttpModule
-            ],
-            declarations: [app_component_1.AppComponent],
-            providers: [api_service_1.ApiService],
-            bootstrap: [app_component_1.AppComponent]
-        }), 
-        __metadata('design:paramtypes', [])
-    ], AppModule);
-    return AppModule;
+    ApiService.prototype.login = function (username, password) {
+        return this.http
+            .post('logon', username, string)
+            .toPromise()
+            .then(response = response.json().data)
+            .catch(this.handleError);
+    };
+    ApiService.prototype.handleError = function (error) {
+        console.log('we had an error', error);
+    };
+    ApiService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [http_1.Http])
+    ], ApiService);
+    return ApiService;
 }());
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+exports.ApiService = ApiService;
+//# sourceMappingURL=api.service.js.map
