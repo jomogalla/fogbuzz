@@ -13,15 +13,15 @@ var api_service_1 = require('./api.service');
 var AppComponent = (function () {
     function AppComponent(apiService) {
         this.apiService = apiService;
-        this.username = '';
-        this.password = '';
-        this.bro = 'hello';
         this.model = { username: '', password: '' };
         this.results = '';
     }
     AppComponent.prototype.logon = function (username, password) {
-        debugger;
-        results = this.apiService.logon(username, password);
+        var _this = this;
+        this.apiService.logon(this.model.username, this.model.password)
+            .then(function (response) {
+            _this.results = response;
+        });
     };
     AppComponent = __decorate([
         core_1.Component({

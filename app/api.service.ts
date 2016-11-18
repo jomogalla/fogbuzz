@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
+import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class ApiService {
@@ -8,11 +9,16 @@ export class ApiService {
 
     constructor (private http: Http) {}
 
-    login(username: string, password: string): Promise<AuthenticationToken> {
+    public logon(username: string, password: string) { 
+        let body = {
+            'cmd': 'logon',
+            'username': username,
+            'password': password
+        }
         return this.http
-            .post('logon', username, string)
+            .post(this.fogbugzUrl, JSON.stringify(body), {headers: this.headers})
             .toPromise()
-            .then(response = response.json().data)
+            .then(response => response.json().data)
             .catch(this.handleError);
     }
 

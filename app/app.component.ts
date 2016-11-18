@@ -6,18 +6,16 @@ import { ApiService } from './api.service';
   templateUrl: '/app/app.template.html'
 })
 export class AppComponent { 
-  username: string = '';
-  password: string = '';
-  bro: string = 'hello';
+  public model = {username: '', password: ''};
 
-  model = {username: '', password: ''};
+  public results: string = ''; 
 
-  results: string = '';
-
-  constructor (private apiService: ApiService) {}
+  constructor (private apiService: ApiService) {} 
 
   public logon(username: string, password: string) {
-    debugger;
-    results = this.apiService.logon(username, password);
+    this.apiService.logon(this.model.username, this.model.password)
+      .then((response) => {
+        this.results = response;
+      });
   }
 }

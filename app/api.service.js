@@ -10,17 +10,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
+require('rxjs/add/operator/toPromise');
 var ApiService = (function () {
     function ApiService(http) {
         this.http = http;
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         this.fogbugzUrl = 'https://altsource.fogbugz.com/f/api/0/jsonapi';
     }
-    ApiService.prototype.login = function (username, password) {
+    ApiService.prototype.logon = function (username, password) {
+        var body = {
+            'cmd': 'logon',
+            'username': username,
+            'password': password
+        };
         return this.http
-            .post('logon', username, string)
+            .post(this.fogbugzUrl, JSON.stringify(body), { headers: this.headers })
             .toPromise()
-            .then(response = response.json().data)
+            .then(function (response) { return response.json().data; })
             .catch(this.handleError);
     };
     ApiService.prototype.handleError = function (error) {

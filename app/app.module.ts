@@ -11,9 +11,9 @@ import { ApiService } from './api.service'
     BrowserModule,
     FormsModule,
     HttpModule 
-  ],
+  ], 
   declarations: [ AppComponent ],
-  providers: [ApiService],
+  providers:    [ApiService],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

@@ -41,27 +41,18 @@
 
 </head>
 <body>
-  <my-app>
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="container">
     <div class="row">
-      <div class="one-half column" style="margin-top: 25%">
-        <h4>Loading...</h4>
-        <form>
-          <label for="username">Username</label>
-          <input name="username" type="text" [(ngModel)]="username"/>
-          <label for="password">Password</label>
-          <input name="password" type="password" [(ngModel)]="password"/>
-          <button>login</button>
-        </form>
-        {{username}}
+      <div class="four columns column-fix">.</div>
+      <div class="four columns" style="margin-top: 25%">
+        <my-app></my-app>
       </div>
     </div>
   </div>
 
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  </my-app>
 </body>
 </html>
